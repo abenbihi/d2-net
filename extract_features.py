@@ -2,6 +2,8 @@ import argparse
 
 import numpy as np
 
+import os
+
 import imageio
 
 import torch
@@ -78,8 +80,12 @@ model = D2Net(
     use_cuda=use_cuda
 )
 
-DATA_ROOT_PATH = '/opt/BenbihiAssia/datasets/kitti/01/image_2/'
-OUT_DIR = 'res/'
+SEQ = 3
+DATA_ROOT_PATH = '/opt/BenbihiAssia/datasets/kitti/%02d/image_2/'%SEQ
+OUT_DIR = 'res/%02d/'%SEQ
+
+if not os.path.exists(OUT_DIR):
+    os.makedirs(OUT_DIR)
 
 # Process the file
 with open(args.image_list_file, 'r') as f:
