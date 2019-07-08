@@ -78,13 +78,17 @@ model = D2Net(
     use_cuda=use_cuda
 )
 
+DATA_ROOT_PATH = '/opt/BenbihiAssia/datasets/kitti/01/image_2/'
+OUT_DIR = 'res/'
+
 # Process the file
 with open(args.image_list_file, 'r') as f:
     lines = f.readlines()
 for line in tqdm(lines, total=len(lines)):
     path = line.strip()
-
-    image = imageio.imread(path)
+    
+    #print(path)
+    image = imageio.imread('%s/%s/'%(DATA_ROOT_PATH, path))
     if len(image.shape) == 2:
         image = image[:, :, np.newaxis]
         image = np.repeat(image, 3, -1)
@@ -135,7 +139,8 @@ for line in tqdm(lines, total=len(lines)):
     keypoints = keypoints[:, [1, 0, 2]]
 
     if args.output_type == 'npz':
-        with open(path + args.output_extension, 'wb') as output_file:
+        with open(OUT_DIR + path + args.output_extension, 'wb') as output_file:
+            #print(OUT_DIR + path + args.output_extension)
             np.savez(
                 output_file,
                 keypoints=keypoints,
