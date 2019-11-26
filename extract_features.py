@@ -121,22 +121,14 @@ for line in tqdm(lines, total=len(lines)):
     )
     with torch.no_grad():
         if args.multiscale:
-            keypoints, scores, descriptors = process_multiscale(
-                torch.tensor(
-                    input_image[np.newaxis, :, :, :].astype(np.float32),
-                    device=device
-                ),
-                model
-            )
+            keypoints, scores, descriptors = process_multiscale( torch.tensor(
+                input_image[np.newaxis, :, :, :].astype(np.float32),
+                device=device), model)
+
         else:
-            keypoints, scores, descriptors = process_multiscale(
-                torch.tensor(
-                    input_image[np.newaxis, :, :, :].astype(np.float32),
-                    device=device
-                ),
-                model,
-                scales=[1]
-            )
+            keypoints, scores, descriptors = process_multiscale( torch.tensor(
+                input_image[np.newaxis, :, :, :].astype(np.float32),
+                device=device), model, scales=[1])
 
     # Input image coordinates
     keypoints[:, 0] *= fact_i

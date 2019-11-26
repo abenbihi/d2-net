@@ -11,9 +11,10 @@ def process_multiscale(image, model, scales=[.5, 1, 2]):
     device = image.device
     assert(b == 1)
 
-    all_keypoints = torch.zeros([3, 0])
+    #print(model.dense_feature_extraction.num_channels)
+    all_keypoints = torch.zeros([3, 1])
     all_descriptors = torch.zeros([
-        model.dense_feature_extraction.num_channels, 0
+        model.dense_feature_extraction.num_channels, 1
     ])
     all_scores = torch.zeros(0)
 
