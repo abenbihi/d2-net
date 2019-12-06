@@ -1,10 +1,12 @@
 #!/bin/sh
 
-MACHINE=1
+MACHINE=2
 if [ "$MACHINE" -eq 0 ]; then
   export WS_DIR=/home/abenbihi/ws/
 elif [ "$MACHINE" -eq 1 ]; then
   export WS_DIR=/home/gpu_user/assia/ws/
+elif [ "$MACHINE" -eq 2 ]; then
+  export WS_DIR=/opt/HomeLocauxTerm2/BenbihiAssia/ws/
 else
   echo "Get your MTF MACHINE macro correct. Bye !"
   exit 1

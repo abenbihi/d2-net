@@ -17,8 +17,15 @@ from lib.pyramid import process_multiscale
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda:0" if use_cuda else "cpu")
 
+MACHINE = 2
+if MACHINE == 0:
+    WS_DIR = "/home/gpu_user/assia/ws/"
+elif MACHINE == 2:
+    WS_DIR = "/opt/HomeLocauxTerm2/BenbihiAssia/ws/"
+else:
+    print("Get your MTF MACHINE macro ok.")
+    exit(1)
 
-WS_DIR = "/home/gpu_user/assia/ws/"
 PYDATA_DIR = "%s/datasets/pydata/pycmu/meta/"%WS_DIR
 
 def draw_kp(img, pts):
